@@ -32,10 +32,14 @@ const RestaurantDetails = ()=>{
     return (RestaurantDet.length===0)? <Shimmer/>:(
        <div>
         <div>
-           <h1> RESTAURANT ID :  {id}</h1>
+
+
+           <h2 style={{color:"red", textAlign:"right"}}> RESTAURANT ID :  {id}</h2>
            <h1> {RestaurantDet.data.cards[0].card.card.info.name}</h1>
            {console.log(RestaurantDet)}
+           
            <h1>{RestaurantDet.data.cards[0].card.card.info.areaName}</h1>
+           <h1>{RestaurantDet.data.cards[0].card.card.info.city}</h1>
            <img src={IMG_CDN_URL+RestaurantDet.data.cards[0].card.card.info.cloudinaryImageId}/> 
            <h1> Cost For TWO :{RestaurantDet.data.cards[0].card.card.info.costForTwo/100}</h1>
         </div>

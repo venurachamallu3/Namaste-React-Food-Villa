@@ -1,9 +1,14 @@
 import { IMG_CDN_URL } from "../config";
+import { useContext } from "react";
 
+import { UserContext } from "../utili/Context";
 
 export const RestarunatCard = ({
     name,cloudinaryImageId,areaName,avgRating
 })=>{
+
+    const {user} = useContext(UserContext);
+
     return (
         <div className="card">
         <img src={
@@ -12,6 +17,7 @@ export const RestarunatCard = ({
         <h3> {name} </h3>
         <h3>Location : {areaName}</h3>
         <h3>Rating: {avgRating}</h3>
+        <h3>{user?.name}</h3>
     </div>
     );
 };
