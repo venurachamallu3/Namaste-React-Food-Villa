@@ -1791,9 +1791,10 @@ export const BodyComponenet = ()=>{
         const resdata = await fetch(swiggy_url);
         const jsondata = await resdata.json();
 // console.log("json dara "+jsondata?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.info);
-         const intitaldata=(jsondata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+         const intitaldata=(jsondata?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
          setallRestaurants(intitaldata);
         setfilterRestaurants(intitaldata);
+        console.log("FILETE "+resdata +"SET DILTER "+intitaldata)
         console.log(filterRestaurants,allRestaurants)
 
         }
@@ -1805,6 +1806,7 @@ export const BodyComponenet = ()=>{
 
     async function getproducts(){
         try {
+
             const proddata = await fetch("https://dummyjson.com/products");
             const prodjson = await proddata.json();
             console.log('Fetched product data:', prodjson);
@@ -1848,7 +1850,7 @@ export const BodyComponenet = ()=>{
             <button type="button" className="search-btn" onClick={()=>{
                 const data=filterData(SearchText,allRestaurants)
                 console.log(data)
-                setfilterRestaurants(data)
+                setfilterRestaurants(data)  
             }}>Search</button>
 
 
@@ -1892,7 +1894,6 @@ export const BodyComponenet = ()=>{
 
 
         </div>
-        
         {console.log("DSX")}
         {console.log("Count is"+ filterRestaurants?.length)}
         <div className="restaurant-list">
