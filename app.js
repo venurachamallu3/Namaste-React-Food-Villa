@@ -13,6 +13,9 @@ import Profile from "./components/Profile";
 import { createBrowserRouter , RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import {UserContext} from "./utili/Context";
+import { Provider } from "react-redux";
+import store from "./utili/store";
+import Cart from "./components/Cart";
 
 
 
@@ -24,6 +27,8 @@ import {UserContext} from "./utili/Context";
 
 const AppLayout = ()=>{
 
+    const [Ruppes,setRupes]=useState([1])
+
     const [user,setuser] = useState({
         name:"VENU",
         email:"venu@gmail.com"
@@ -31,12 +36,14 @@ const AppLayout = ()=>{
 
     return (
         <React.Fragment>
+            <Provider store={store}>
             <UserContext.Provider 
-            value={{user:user,setuser:setuser}}>
+            value={{user:user,setuser:setuser,Ruppes:Ruppes,setRupes:setRupes}}>
             <HeaderComponenet/>
             <Outlet/>
             <FooterComponenet/>
             </UserContext.Provider>
+            </Provider>
         </React.Fragment>
 
     )
@@ -48,10 +55,11 @@ const appRouter = createBrowserRouter ([
      element:<AppLayout/> , 
      errorElement:<Error/> ,
      children:[
+        {path:'/',element:<BodyComponenet/>},
         {path:'/about', element:<About/> , children:[{path:'profile', element:<Profile/>}]},
         {path:'/contact',element:<Contact/>},
         {path:'/restaurant/:id',element:<RestaurantDetails/>},
-        {path:'/',element:<BodyComponenet/>},
+        {path:'/cartitems',element:<Cart/>}
          
 
      ]
